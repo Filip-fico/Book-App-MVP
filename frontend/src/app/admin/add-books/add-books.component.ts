@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { AdminNavbarComponent } from "../admin-navbar/admin-navbar.component";
 import { AdminSidebarComponent } from "../admin-sidebar/admin-sidebar.component";
+import { initFlowbite } from 'flowbite';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-add-books',
   imports: [AdminNavbarComponent, AdminSidebarComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  templateUrl: './add-books.component.html',
+  styleUrl: './add-books.component.css'
 })
-export class DashboardComponent implements OnInit {
-
+export class AddBooksComponent implements OnInit {
 
   ngOnInit(): void {
-
+    // initFlowbite()
   }
 
 }

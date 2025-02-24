@@ -1,17 +1,17 @@
 <header class="flex justify-between items-center px-12 py-8">
-    <div class="text-3xl font-bold flex items-center">
+    <div routerLink="/" class="text-3xl font-bold flex items-center">
         <span class="text-black">(l)</span>
-        <span class="ml-2">Library</span>
+        <span class="ml-2">LiteLit</span>
     </div>
     <nav class="hidden md:flex flex-1 justify-between text-gray-700 text-sm">
         <div class="flex space-x-6">
-            <a href="#" class="hover:text-black mx-5">Home</a>
+            <a routerLink="/" class="hover:text-black mx-5">Library</a>
             <a href="#" class="hover:text-black mx-5">How it Works</a>
             <a href="#" class="hover:text-black mx-5">Subscription Plans</a>
         </div>
         <div class="flex space-x-6">
             <a href="#" class="hover:text-black mx-5">Contact Sales</a>
-            <a href="#" class="hover:text-black">Log in</a>
+            <a routerLink="/auth/login" class="hover:text-black">Log in</a>
         </div>
     </nav>
 </header>
