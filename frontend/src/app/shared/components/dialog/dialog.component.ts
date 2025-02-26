@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { Modal } from 'flowbite';
-import { DIALOG_DATA } from '../../services/dialog-tokens';
-import { DialogRef } from '../../services/dialog-ref';
+import { DIALOG_DATA } from '../../services/dialog/dialog-tokens';
+import { DialogRef } from '../../services/dialog/dialog-ref';
 
 @Component({
   selector: 'app-dialog',

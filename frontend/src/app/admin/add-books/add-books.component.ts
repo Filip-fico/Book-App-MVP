@@ -3,12 +3,18 @@ import { AdminNavbarComponent } from "../admin-navbar/admin-navbar.component";
 import { AdminSidebarComponent } from "../admin-sidebar/admin-sidebar.component";
 import { initFlowbite } from 'flowbite';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DialogService } from '../../shared/services/dialog.service';
 import { DialogComponent } from '../../shared/components/dialog/dialog.component';
+import { DialogService } from '../../shared/services/dialog/dialog.service';
+import { BooksService } from '../../shared/services/books/books.service';
+import { Router } from '@angular/router';
+import { ToastService } from '../../shared/services/toast/toast.service';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-books',
   imports: [
+    CommonModule,
     AdminNavbarComponent,
     AdminSidebarComponent,
     ReactiveFormsModule,
@@ -35,8 +41,14 @@ export class AddBooksComponent implements OnInit {
   public bookForm: FormGroup;
   private coverImage!: File;
   private bookFile!: File;
+  public creatingBook = false;
 
-  constructor(private dialogService: DialogService) {
+  constructor(
+    private dialogService: DialogService,
+    private booksService: BooksService,
+    private router: Router,
+    private toastService: ToastService,
+  ) {
     this.bookForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       author: new FormControl('', [Validators.required]),
@@ -59,7 +71,34 @@ export class AddBooksComponent implements OnInit {
         }
       });
     } else {
-      console.log('Add book');
+      this.creatingBook = true;
+      const bookData = {
+        title: this.bookForm.value.title,
+        author: this.bookForm.value.author,
+        genre: this.bookForm.value.genre,
+        description: this.bookForm.value.description
+      }
+      this.booksService.createBook(bookData, this.coverImage, this.bookFile).subscribe((response: any) => {
+        this.creatingBook = false;
+        if (response["success"]) {
+          this.toastService.open(ToastComponent, {
+            data: {
+              action: 'success',
+              message: 'Book added successfully'
+            }
+          });
+          this.router.navigate(['/admin/books/list']);
+        } else {
+          console.log(response)
+          this.toastService.open(ToastComponent, {
+            data: {
+              action: 'danger',
+              message: 'Failed to add book'
+            }
+          });
+        }
+      });
+
     }
   }
 

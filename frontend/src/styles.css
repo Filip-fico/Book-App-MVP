@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @theme {
-    --container-4xs: 14rem;
+    --container-4xs: 10rem;
 }
 
 body {
