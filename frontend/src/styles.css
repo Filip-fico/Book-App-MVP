@@ -11,3 +11,7 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+
+.overlay-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
