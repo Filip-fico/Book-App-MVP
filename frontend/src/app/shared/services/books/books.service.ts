@@ -35,4 +35,8 @@ export class BooksService {
     return this.http.delete(`${this.apiUrl}/admin/books/delete/${bookId}`);
   }
 
+  public searchBooks(search: string) {
+    return this.http.get(`${this.apiUrl}/user/books/search?search=${search}`);
+  }
+
 }

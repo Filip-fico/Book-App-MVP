@@ -1,3 +1,45 @@
-<app-navbar></app-navbar>
+<app-library-nav (searchBooks)="searchBooks($event)"></app-library-nav>
 
-<p>Library dashboard works!</p>
+<app-sidebar></app-sidebar>
+
+<div class="p-4 lg:ml-64 mt-12">
+
+    <p class="text-black text-lg font-bold">Most Popular</p>
+
+
+    <span *ngIf="displayingSearchResults" class="text-xs text-gray-500">
+        Found ({{this.list.length}}) results
+    </span>
+    <span *ngIf="searching" class="text-xs text-gray-500">Searching...</span>
+    <span *ngIf="displayingSearchResults" (click)="clearSearchResults()"
+        class="text-xs ml-2 text-gray-500 cursor-pointer hover:underline">[Clear]</span>
+
+
+    <div *ngIf="!searching" class="mt-5 lg:mr-10 flex 3xs:justify-center">
+
+        <div
+            class="grid grid-cols-2 1sm:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 3xl:grid-cols-8 gap-4">
+
+            @for (book of list; track book) {
+
+            <div
+                class="max-w-4xs bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" [src]="book.coverImage" alt="" />
+                </a>
+                <div class="p-3 flex flex-col justify-between gap-2">
+                    <a href="#" class="block mb-2">
+                        <h5 class="mb-2 text-xs tracking-tight text-gray-400 dark:text-white">
+                            {{book?.title}}</h5>
+                    </a>
+
+                </div>
+            </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>

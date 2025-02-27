@@ -12,5 +12,9 @@ export const routes: Routes = [
     {
         path: 'admin',
         loadChildren: () => import('./admin/admin.routes')
+    },
+    {
+        path: 'library',
+        loadChildren: () => import('./library/library.routes')
     }
 ];

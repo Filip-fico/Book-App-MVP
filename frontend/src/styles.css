@@ -6,6 +6,7 @@
 
 @theme {
     --container-4xs: 10rem;
+    --container-1sm: 30rem;
 }
 
 body {
